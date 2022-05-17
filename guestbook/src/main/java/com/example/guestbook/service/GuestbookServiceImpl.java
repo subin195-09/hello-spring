@@ -68,8 +68,11 @@ public class GuestbookServiceImpl implements GuestbookService{
 
         if (result.isPresent()) {
             Guestbook entity = result.get();
+
             entity.changeTitle(dto.getTitle());
             entity.changeContent(dto.getContent());
+
+            repository.save(entity);
         }
     }
 }
