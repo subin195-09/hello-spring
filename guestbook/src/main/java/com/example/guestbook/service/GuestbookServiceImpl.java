@@ -45,6 +45,8 @@ public class GuestbookServiceImpl implements GuestbookService{
 
         Pageable pageable = requestDTO.getPageable(Sort.by("gno").descending());
 
+        BooleanBuilder booleanBuilder = getSearch(requestDTO); // 검색 조건 처리
+
         Page<Guestbook> result = repository.findAll(pageable);
 
         Function<Guestbook, GuestbookDTO> fn = (entity -> entityToDto(entity));
@@ -108,16 +110,5 @@ public class GuestbookServiceImpl implements GuestbookService{
         booleanBuilder.and(conditionBuilder);
 
         return booleanBuilder;
-    }
-
-    @Override
-    public PageResultDTO<GuestbookDTO, Guestbook> getList(PageRequestDTO requestDTO) {
-        Pageable pageable = requestDTO.getPageable(Sort.by("gno").descending());
-        BooleanBuilder booleanBuilder = getSearch(requestDTO); // 검색 조건 처리
-        Page<Guestbook> result = repository.findAll(booleanBuilder, pageable);
-        Function<Guestbook, GuestbookDTO> fn = (entity -> entityToDto(entity));
-
-        return new PageResultDTO<>(result, fn);
-
     }
 }
