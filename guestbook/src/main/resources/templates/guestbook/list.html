@@ -51,7 +51,7 @@
             <tbody>
                 <tr th:each="dto : ${result.dtoList}" >
                   <th scope="row">
-                      <a th:href="@{/guestbook/read(gno = ${dto.gno}, page= ${result.page})}">
+                      <a th:href="@{/guestbook/read(gno = ${dto.gno}, page= ${result.page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">
                           [[${dto.gno}]]
                       </a>
                   </th>
@@ -63,15 +63,15 @@
         </table>
         <ul class="pagination h-100 justify-content-center align-items-center">
             <li class="page-item " th:if="${result.prev}">
-                <a class="page-link" th:href="@{/guestbook/list(page= ${result.start - 1})}" tabindex="-1">Prevopis</a>
+                <a class="page-link" th:href="@{/guestbook/list(page= ${result.start - 1}, type=${pageRequestDTO.type}, keyword = ${pageRequestDTO.keyword})}" tabindex="-1">Previous</a>
             </li>
             <li th:class=" 'page-item ' + ${result.page == page?'active':''}" th:each="page: ${result.pageList}">
-                <a class="page-link" th:href="@{/guestbook/list(page = ${page})}">
+                <a class="page-link" th:href="@{/guestbook/list(page = ${page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">
                     [[${page}]]
                 </a>
             </li>
             <li class="page-item" th:if="${result.next}">
-                <a class="page-link" th:href="@{/guestbook/list(page = ${result.end + 1})}">Next</a>
+                <a class="page-link" th:href="@{/guestbook/list(page = ${result.end + 1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">Next</a>
             </li>
         </ul>
         <div class="modal" tabindex="-1" role="dialog">
