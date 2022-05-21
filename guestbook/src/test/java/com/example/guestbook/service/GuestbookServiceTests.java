@@ -49,8 +49,8 @@ public class GuestbookServiceTests {
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
                 .page(1)
                 .size(10)
-                .type("tc")
-                .keyword("한글")
+                .type("t")
+                .keyword("modal")
                 .build();
 
         PageResultDTO<GuestbookDTO, Guestbook> resultDTO = service.getList(pageRequestDTO);
