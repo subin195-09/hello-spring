@@ -9,3 +9,6 @@ spring boot study
 
 ### core
 순수 java로 간단한 프로젝트를 만든다음 spring을 적용해보면서 oop의 개념을 학습하는 project 입니다.
+
+### jpashop
+jpa 를 사용한 간단한 api 서버 구축 project 
