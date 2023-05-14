@@ -1,6 +1,7 @@
 package jpabook.jpashop.entity.item;
 
 import jpabook.jpashop.entity.Category;
+import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,10 +37,8 @@ public abstract class Item {
     public void removeStock(int quantity) {
         int rest = this.stockQuantity - quantity;
         if (rest < 0) {
-            System.out.println("need more stock");
-            this.stockQuantity = 0;
-        } else {
-            this.stockQuantity = rest;
+            throw new NotEnoughStockException("need more stock");
         }
+        this.stockQuantity = rest;
     }
 }
